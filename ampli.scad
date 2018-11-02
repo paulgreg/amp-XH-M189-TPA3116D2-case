@@ -5,7 +5,7 @@ length = 86;
 height = 36;
 thickness = 2;
 
-BOTTOM= false;
+BOTTOM= true;
 
 bottom = 20;
 
@@ -14,15 +14,33 @@ difference(){
     outer();
     inner();
     airflow();
-    //jack();
+    //jackAndPower();
     cables();
+    
     if (BOTTOM) removeTop();
     if (!BOTTOM) removeBottom();
 }  
 
-module jack() {
-    j = 4;
-    translate([15, 10, bottom]) rotate([90, 0, 0]) cylinder(r=j, h=20);
+ //board();
+
+
+module board () {
+    translate([thickness, thickness, 1]) {
+        cube([50, 84, 9]);
+        rjack = 4;
+        translate([9+rjack, 0, 10]) rotate([90, 0, 0]) cylinder(r=rjack, h=10);
+        rpower = 4;
+        translate([34+rpower, 0, 10]) rotate([90, 0, 0]) cylinder(r=+rpower, h=10);
+    }
+}
+
+module jackAndPower() {
+    translate([thickness, thickness, 1]) {
+        rjack = 4;
+        translate([9+rjack, 0, 9]) rotate([90, 0, 0]) cylinder(r=rjack, h=10);
+        rpower = 4;
+        translate([34+rpower, 0, 10]) rotate([90, 0, 0]) cylinder(r=+rpower, h=10);
+    }
 }
 
 module removeTop() {
@@ -30,7 +48,7 @@ module removeTop() {
 }
 
 module removeBottom() {
-translate([-10,-10, 0]) cube([width*2,length*2, bottom]);
+translate([-10,-10, -5]) cube([width*2,length*2, bottom+5]);
 }
 
 module outer() {
