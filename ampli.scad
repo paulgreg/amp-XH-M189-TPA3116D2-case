@@ -1,9 +1,13 @@
  $fn=50;
 
-width = 54;
-length = 86;
-height = 36;
+boardWidth = 50;
+boardLength = 84;
+
 thickness = 2;
+
+width = boardWidth + thickness*2;
+length = boardLength + thickness*2 + 2;
+height = 36;
 
 BOTTOM= true;
 
@@ -26,7 +30,7 @@ difference(){
 
 module board () {
     translate([thickness, thickness, 1]) {
-        cube([50, 84, 9]);
+        cube([boardWidth, boardLength, 9]);
         rjack = 4;
         translate([9+rjack, 0, 10]) rotate([90, 0, 0]) cylinder(r=rjack, h=10);
         rpower = 4;
