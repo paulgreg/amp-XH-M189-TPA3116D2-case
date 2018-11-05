@@ -7,7 +7,7 @@ thickness = 2;
 
 width = boardWidth + thickness*2;
 length = boardLength + thickness*2 + 2;
-height = 36;
+height = 40;
 
 BOTTOM= true;
 
@@ -81,15 +81,10 @@ module corner () {
 
 module cables() {
     w = 20;
-    translate([width / 2 - w / 2, length-2,bottom-2]) cube([w, 10, 2]);
+    translate([width / 2 - w / 2, length-2,bottom-2]) cube([w, 10, 4]);
 }
 
 
 module airflow () {
-translate([10, 10, height]) cube([width - 20, 2, 10]);
-translate([10, 15, height]) cube([width - 20, 2, 10]);
-translate([10, 20, height]) cube([width - 20, 2, 10]);
-translate([10, 25, height]) cube([width - 20, 2, 10]);
-translate([10, 30, height]) cube([width - 20, 2, 10]);
-translate([10, 35, height]) cube([width - 20, 2, 10]);
+     for (a =[10:5:45]) translate([10, a, height]) cube([width - 20, 2, 10]);
 }
